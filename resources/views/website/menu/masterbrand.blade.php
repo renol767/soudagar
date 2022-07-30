@@ -140,6 +140,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
+                <p>Export DataTable Gambar Error</p>
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="basic-datatable">
                     <div class="row">
@@ -150,26 +151,25 @@
                                         <tr>
                                             <th></th>
                                             <th>No</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
+                                            <th>Nama Brand</th>
+                                            <th>Logo Brand</th>
+                                            <th>Deskripsi Brand</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($users as $key => $data)
+                                    @foreach($datas as $key => $data)
                                         <tr>
                                             <th></th>
                                             <th>{{$key + 1}}</th>
-                                            <th>{{$data->name}}</th>
-                                            <th>{{$data->email}}</th>
-                                            <th>{{$data->role}}</th>
+                                            <th>{{$data->nama_brand}}</th>
+                                            <th><img src="{{asset('images/brand/' . $data->logo_brand)}}" class="me-75" height="100"    /></th>
+                                            <th>{{$data->deskripsi_brand}}</th>
                                             <th>
                                                 <a class="nav-link dropdown-toggle dropdown-user-link btn btn-outline-primary" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="" class="me-25"></i>
                                             <span>Aksi</span></a>
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                                                    <a class="dropdown-item" onclick="resetpw_data(this)" href="#" data-bs-toggle="modal" data-bs-target="#resetPassword" data-id="{{$data->id}}"><i class="me-50" data-feather="key"></i>Reset Password</a>
-                                                    <a class="dropdown-item" onclick="edit_data(this)" href="#" data-bs-toggle="modal" data-bs-target="#editData" data-id="{{$data->id}}" data-nama="{{$data->name}}" data-email="{{$data->email}}" data-role="{{$data->role}}"><i class="me-50" data-feather="edit"></i>Edit</a>
+                                                    <a class="dropdown-item" onclick="edit_data(this)" href="#" data-bs-toggle="modal" data-bs-target="#editData" data-id="{{$data->id}}" data-nama="{{$data->nama_brand}}" data-img="{{$data->logo_brand}}" data-deskripsi="{{$data->deskripsi_brand}}"><i class="me-50" data-feather="edit"></i>Edit</a>
                                                     <a class="dropdown-item" onclick="confirm_delete(this)" href="#" data-bs-toggle="modal" data-bs-target="#confirmDelete" data-id="{{$data->id}}"><i class="me-50" data-feather="trash"></i>Hapus</a>
                                                 </div>
                                             </th>                 
@@ -181,42 +181,19 @@
                         </div>
                     </div>
                     <!-- Confirm Delete Users -->
-                    <!-- Reset Password Modal -->
                     <div class="modal modal-slide-in fade" id="confirmDelete" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
                         <div class="modal-dialog sidebar-sm">
-                        <form class="add-new-record modal-content pt-0" action="{{route('deleteuser')}}" method="POST">
+                        <form class="add-new-record modal-content pt-0" action="{{route('deletebrand')}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" id="deleteuserid" name="deleteuserid">
+                                <input type="hidden" id="deletebrandid" name="deletebrandid">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
                                 <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Brand</h5>
                                 </div>
                                 <div class="modal-body flex-grow-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin menghapus user?</h5><br>
+                                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin menghapus brand? Perintah ini juga menghapus Semua Produk yang terkait di Brand</h5><br>
                                     <button type="submit" class="btn btn-primary data-submit me-1">Confirm</button>
-                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Reset Password Modal -->
-                    <div class="modal modal-slide-in fade" id="resetPassword" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog sidebar-sm">
-                        <form class="add-new-record modal-content pt-0" action="{{route('resetpwuser')}}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" id="resetpwid" name="resetpwid">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-                                <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">Reset Password User</h5>
-                                </div>
-                                <div class="modal-body flex-grow-1">
-                                    <div class="mb-1">
-                                        <label class="form-label" >Reset New Password</label>
-                                        <input id="newpassword" type="password" class="form-control" name="newpassword" required autocomplete="current-password">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary data-submit me-1">Submit</button>
                                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
@@ -225,7 +202,7 @@
                     <!-- Modal to Edit new record -->
                     <div class="modal modal-slide-in fade" id="editData" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
                         <div class="modal-dialog sidebar-sm">
-                        <form class="add-new-record modal-content pt-0" action="{{route('edituser')}}" method="POST">
+                        <form class="add-new-record modal-content pt-0" enctype="multipart/form-data" action="{{route('editbrand')}}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" id="editid" name="editid">
@@ -235,21 +212,21 @@
                                 </div>
                                 <div class="modal-body flex-grow-1">
                                     <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-fullname">Name</label>
-                                        <input type="text" class="form-control dt-full-name" id="editname" name="editname" placeholder="John Doe" aria-label="John Doe" required />
+                                        <label class="form-label" for="basic-icon-default-fullname">Nama brand</label>
+                                        <input type="text" class="form-control dt-full-name" id="editnama_brand" name="editnama_brand" placeholder="Orang Tua" aria-label="John Doe" required />
                                     </div>
                                     <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" class="form-control dt-email" id="editemail" name="editemail" placeholder="john.doe@example.com" required aria-label="john.doe@example.com" />
-                                        <small class="form-text"> You can use letters, numbers & periods </small>
+                                        <label for="formFile" class="form-label">Logo Brand Saat Ini</label><br>
+                                        <img id="oldimage" src="" class="me-75" height="100"/>
+                                    </div>    
+                                    <div class="mb-1">
+                                        <label for="formFile" class="form-label">Logo Brand Baru</label>
+                                        <input class="form-control" type="file" id="newlogo_brand" name="newlogo_brand" />
+                                        <small class="form-text">Abaikan jika tidak ingin diubah</small>
                                     </div>
                                     <div class="mb-1">
-                                        <label class="form-label" for="basicSelect">Role</label>
-                                        <select class="form-select" id="editrole" name="editrole" required>
-                                            <option value="website">Admin Website</option>
-                                            <option value="gudang">Admin Gudang</option>
-                                            <option value="reseller">Reseller</option>
-                                        </select>
+                                        <label class="form-label" >Deskripsi Brand</label>
+                                        <textarea id="editdeskripsi_brand" type="text" class="form-control" name="editdeskripsi_brand" rows="3" placeholder="Deskripsi Brand" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary data-submit me-1">Submit</button>
                                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -261,33 +238,24 @@
                     <!-- Modal to add new record -->
                     <div class="modal modal-slide-in fade" id="modals-slide-in-create">
                         <div class="modal-dialog sidebar-sm">
-                            <form class="add-new-record modal-content pt-0" action="{{route('insertuser')}}" method="POST">
+                            <form class="add-new-record modal-content pt-0" enctype="multipart/form-data" action="{{route('insertbrand')}}" method="POST">
                                 @csrf
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
                                 <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">New Brand</h5>
                                 </div>
                                 <div class="modal-body flex-grow-1">
                                     <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-fullname">Name</label>
-                                        <input type="text" class="form-control dt-full-name" id="name" name="name" placeholder="John Doe" aria-label="John Doe" required />
+                                        <label class="form-label" for="basic-icon-default-fullname">Nama brand</label>
+                                        <input type="text" class="form-control dt-full-name" id="nama_brand" name="nama_brand" placeholder="Orang Tua" aria-label="John Doe" required />
                                     </div>
                                     <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" id="email" name="email" placeholder="john.doe@example.com" required aria-label="john.doe@example.com" />
-                                        <small class="form-text"> You can use letters, numbers & periods </small>
+                                        <label for="formFile" class="form-label">Logo Brand</label>
+                                        <input class="form-control" type="file" id="logo_brand" name="logo_brand" />
                                     </div>
                                     <div class="mb-1">
-                                        <label class="form-label" >Password</label>
-                                        <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basicSelect">Role</label>
-                                        <select class="form-select" id="role" name="role" required>
-                                            <option value="website">Admin Website</option>
-                                            <option value="gudang">Admin Gudang</option>
-                                            <option value="reseller">Reseller</option>
-                                        </select>
+                                        <label class="form-label" >Deskripsi Brand</label>
+                                        <textarea id="deskripsi_brand" type="text" class="form-control" name="deskripsi_brand" rows="3" placeholder="Deskripsi Brand" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary data-submit me-1">Submit</button>
                                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -348,19 +316,18 @@
         function edit_data(e){
             var data = $(e);
             $('#editid').val(data.data('id'))
-            $('#editname').val(data.data('nama'));
-            $('#editemail').val(data.data('email'));
-            $('#editrole').val(data.data('role'));
-        }
-
-        function resetpw_data(e){
-            var data = $(e);
-            $('#resetpwid').val(data.data('id'));
+            $('#editnama_brand').val(data.data('nama'));
+            img = data.data('img');
+            oldImage = "/images/brand/" + img + ""
+            var base_url = window.location.origin;
+            oldImage = base_url+oldImage;
+            $('#oldimage').attr('src', oldImage);
+            $('#editdeskripsi_brand').val(data.data('deskripsi'));
         }
 
         function confirm_delete(e){
             var data = $(e);
-            $('#deleteuserid').val(data.data('id'));
+            $('#deletebrandid').val(data.data('id'));
         }
     </script>
 
@@ -370,9 +337,9 @@
       columns: [
         { data: 'responsive_id'},
         { data: 'id' }, 
-        { data: 'name' },
-        { data: 'email' },
-        { data: 'role' },
+        { data: 'nama_brand' },
+        { data: 'logo_brand' },
+        { data: 'deskripsi_brand' },
         { data: '' },
       ],
       columnDefs: [
@@ -459,7 +426,7 @@
           display: $.fn.dataTable.Responsive.display.modal({
             header: function (row) {
               var data = row.data();
-              return 'Details of ' + data['name'];
+              return 'Details of ' + data['nama_brand'];
             }
           }),
           type: 'column',

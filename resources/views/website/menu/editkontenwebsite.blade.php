@@ -79,7 +79,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item me-auto"><a class="navbar-brand" href=""><span class="brand-logo">
+                <li class="nav-item me-auto"><a class="navbar-brand" href="/website"><span class="brand-logo">
                             <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                                 <defs>
                                     <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -111,15 +111,13 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masteruser')}}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="Form Wizard">Master User</span></a>
-                </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('editkontenwebsite')}}"><i data-feather="box"></i><span class="menu-title text-truncate" data-i18n="Form Layout">Edit Konten Web</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="form-validation.html"><i data-feather="check-circle"></i><span class="menu-title text-truncate" data-i18n="Form Validation">Form Validation</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masteruser')}}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="Form Wizard">Master User</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="form-repeater.html"><i data-feather="rotate-cw"></i><span class="menu-title text-truncate" data-i18n="Form Repeater">Form Repeater</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masterbrand')}}"><i data-feather="check-circle"></i><span class="menu-title text-truncate" data-i18n="Form Validation">Master Brand</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="table-bootstrap.html"><i data-feather="server"></i><span class="menu-title text-truncate" data-i18n="Table">Table</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masterproduk')}}"><i data-feather="check-circle"></i><span class="menu-title text-truncate" data-i18n="Form Validation">Master Produk</span></a>
                 </li>
             </ul>
         </div>

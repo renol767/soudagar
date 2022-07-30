@@ -27,5 +27,13 @@ Route::post('website/insertuser', [App\Http\Controllers\WebsiteAdminController::
 Route::put('website/edituser', [App\Http\Controllers\WebsiteAdminController::class, 'edituser'])->middleware('auth')->name('edituser');
 Route::put('website/resetpwuser', [App\Http\Controllers\WebsiteAdminController::class, 'resetpwuser'])->middleware('auth')->name('resetpwuser');
 Route::delete('website/deleteuser', [App\Http\Controllers\WebsiteAdminController::class, 'deleteuser'])->middleware('auth')->name('deleteuser');
+Route::get('website/masterbrand', [App\Http\Controllers\WebsiteAdminController::class, 'masterbrand'])->middleware('auth')->name('masterbrand');
+Route::post('website/insertbrand', [App\Http\Controllers\WebsiteAdminController::class, 'insertbrand'])->middleware('auth')->name('insertbrand');
+Route::put('website/editbrand', [App\Http\Controllers\WebsiteAdminController::class, 'editbrand'])->middleware('auth')->name('editbrand');
+Route::delete('website/deletebrand', [App\Http\Controllers\WebsiteAdminController::class, 'deletebrand'])->middleware('auth')->name('deletebrand');
+Route::get('website/masterproduk', [App\Http\Controllers\WebsiteAdminController::class, 'masterproduk'])->middleware('auth')->name('masterproduk');
+Route::post('website/insertproduk', [App\Http\Controllers\WebsiteAdminController::class, 'insertproduk'])->middleware('auth')->name('insertproduk');
+Route::put('website/editproduk', [App\Http\Controllers\WebsiteAdminController::class, 'editproduk'])->middleware('auth')->name('editproduk');
+Route::delete('website/deleteproduk', [App\Http\Controllers\WebsiteAdminController::class, 'deleteproduk'])->middleware('auth')->name('deleteproduk');
 Route::get('gudang', function () { return view('gudang/admin'); })->middleware(['checkRole:gudang']);
 Route::get('reseller', function () { return view('reseller/admin'); })->middleware(['checkRole:reseller']);
