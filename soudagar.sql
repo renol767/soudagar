@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2022 at 03:20 PM
+-- Generation Time: Jul 30, 2022 at 11:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `soudagar`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brand`
+--
+
+CREATE TABLE `brand` (
+  `id` bigint(20) NOT NULL,
+  `nama_brand` varchar(255) NOT NULL,
+  `logo_brand` varchar(255) NOT NULL,
+  `deskripsi_brand` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `brand`
+--
+
+INSERT INTO `brand` (`id`, `nama_brand`, `logo_brand`, `deskripsi_brand`) VALUES
+(4, 'AWS', '1659207131.png', 'Amazon Web Services'),
+(5, 'Microsoft Azure', '1659202950.png', 'Microsoft Azure Cloud');
 
 -- --------------------------------------------------------
 
@@ -86,6 +107,31 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `produk`
+--
+
+CREATE TABLE `produk` (
+  `id` int(11) NOT NULL,
+  `nama_produk` varchar(255) NOT NULL,
+  `foto_produk` varchar(255) NOT NULL,
+  `deskripsi_produk` varchar(255) NOT NULL,
+  `stok_produk` varchar(255) NOT NULL,
+  `harga_reseller` varchar(255) NOT NULL,
+  `harga_jual` varchar(255) NOT NULL,
+  `id_brand` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id`, `nama_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`, `harga_reseller`, `harga_jual`, `id_brand`) VALUES
+(1, 'EC2', '1659209443.png', 'Amazon EC2 Service', '100', '1000000', '1200000', 4),
+(2, 'Azure Machine Learning', '1659213779.jpg', 'Azure Machine Learning', '200', '4000000', '4500000', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -115,6 +161,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 --
 
 --
+-- Indexes for table `brand`
+--
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -140,6 +192,13 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `produk`
+--
+ALTER TABLE `produk`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_brand` (`id_brand`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -149,6 +208,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -169,10 +234,26 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `produk`
+--
+ALTER TABLE `produk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `produk`
+--
+ALTER TABLE `produk`
+  ADD CONSTRAINT `id_brand` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
