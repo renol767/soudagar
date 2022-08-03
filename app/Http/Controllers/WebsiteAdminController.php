@@ -26,7 +26,10 @@ class WebsiteAdminController extends Controller
 
     public function index()
     {
-        return view('website/admin');
+        $data = [
+            'title' => 'Dashboard'
+        ];
+        return view('website/admin', $data);
     }
 
     public function editkontenwebsite()
