@@ -152,25 +152,7 @@
 <!-- DataTabel -->
 <script>
     $('#datatablecustom').DataTable({
-        columns: [{
-                data: 'responsive_id'
-            },
-            {
-                data: 'id'
-            },
-            {
-                data: 'judul'
-            },
-            {
-                data: 'image'
-            },
-            {
-                data: 'konten'
-            },
-            {
-                data: ''
-            },
-        ],
+        
         columnDefs: [{
                 // For Responsive
                 className: 'control',
