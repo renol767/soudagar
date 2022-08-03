@@ -1,0 +1,54 @@
+[8:23 AM, 7/31/2022] Bobon Santoso: kena cobaan LOGIN
+Admin Website
+
+website@soudagar.id
+zxasqw12
+
+ADMIN GUDANG
+
+gudang@soudagar.id
+zxasqw12
+
+Reseller
+
+reseller@soudagar.id
+zxasqw12
+[8:23 AM, 7/31/2022] Bobon Santoso: https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/html/ltr/vertical-menu-template/index.html
+https://www117.zippyshare.com/v/vHEmsGgK/file.html
+
+
+
+15% PUBLIC
+12.5% STEVEN
+12.5% DEVA
+60% A RIAN
+
+LANDING PAGE : DEVA
+LOGIN REGISTER : RENOL
+
+ADMIN WEBSITE : RENOL
+EDIT KONTEN WEBSITE : DEVA
+MASTER USER : RENOL
+MASTER BRAND : RENOL
+MASTER PRODUK : RENOL
+
+ADMIN GUDANG : DEVA
+MASTER PESANAN : DEVA
+MASTER KERTERSEDIAAN PRODUK : RENOL
+LIST RESELLER : DEVA
+
+RESELLER : DEVA
+PENGAJUAN AMBIL PRODUK (HISTORY) : DEVA
+
+DEPLOYMENT : RENOL
+
+TABLE
+USER NO HP
+BRAND OK
+PRODUK OK
+
+TRANSAKSI (MASTER PESANAN, PENGAJUAN AMBIL PRODUK)
+id, id_brand, id_produk, id_user, kuantitas, jumlah, status(apakah sudah dibayar / belum?), tanggal_pengambilan, created_at, update_at(ketika konfirmasi pesanan)
+
+WEBSITE
+text1, gambar1 kumaha dwk

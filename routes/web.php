@@ -12,14 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
+// LANDING PAGE
+Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('website/simpanKontenWeb', [App\Http\Controllers\WebsiteAdminController::class, 'simpanKontenWeb'])->name('simpanKontenWeb');
+Auth::routes();
+
 Route::get('website', [App\Http\Controllers\WebsiteAdminController::class, 'index'])->middleware('auth');
 Route::get('website/editkonten', [App\Http\Controllers\WebsiteAdminController::class, 'editkontenwebsite'])->middleware('auth')->name('editkontenwebsite');
 Route::get('website/masteruser', [App\Http\Controllers\WebsiteAdminController::class, 'masteruser'])->middleware('auth')->name('masteruser');
@@ -36,4 +35,9 @@ Route::post('website/insertproduk', [App\Http\Controllers\WebsiteAdminController
 Route::put('website/editproduk', [App\Http\Controllers\WebsiteAdminController::class, 'editproduk'])->middleware('auth')->name('editproduk');
 Route::delete('website/deleteproduk', [App\Http\Controllers\WebsiteAdminController::class, 'deleteproduk'])->middleware('auth')->name('deleteproduk');
 Route::get('gudang', function () { return view('gudang/admin'); })->middleware(['checkRole:gudang']);
-Route::get('reseller', function () { return view('reseller/admin'); })->middleware(['checkRole:reseller']);
+Route::get('reseller', function () { return view('reseller/admin'); })->middleware(['checkRole:reseller'])->name('reseller');
+
+//BLOG  
+Route::get('website/blog/list', [App\Http\Controllers\BlogController::class, 'list'])->middleware('auth')->name('blog');
+Route::get('website/blog/create', [App\Http\Controllers\BlogController::class, 'create'])->middleware('auth')->name('create_blog');
+Route::post('website/blog/insert', [App\Http\Controllers\BlogController::class, 'insert'])->middleware('auth')->name('insert_blog');
