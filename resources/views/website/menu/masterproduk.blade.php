@@ -176,7 +176,8 @@
         </div>
     </div>
 </section>
-<!-- Dashboard Ecommerce ends -->
+@endSection()
+@section('script')
 <!-- Edit / Reset Password Modal -->
 <script>
     function edit_data(e) {

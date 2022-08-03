@@ -34,7 +34,8 @@
         </form>
     </div>
 </div>
-
+@endSection()
+@section('script')
 <script>
     var toolbarOptions = [
         ['bold', 'italic', 'underline', 'strike'], // toggled buttons

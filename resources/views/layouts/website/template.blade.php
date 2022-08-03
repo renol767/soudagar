@@ -55,39 +55,6 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexy/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
-
-    <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('vuexy/app-assets/vendors/js/vendors.min.js') }}"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('vuexy/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/responsive.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/jszip.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js') }}"></script>
-    <script src="{{ asset('vuexy/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <!-- END: Page Vendor JS-->
-    <script src="{{ asset('vuexy/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-
-
-    <!-- BEGIN: Page JS-->
-    <script src="{{ asset('vuexy/app-assets/js/scripts/forms/form-select2.js') }}"></script>
-    <!-- END: Page JS-->
-
-<!-- BEGIN: Theme JS-->
-<script src="{{ asset('vuexy/app-assets/js/core/app-menu.js') }}"></script>
-<script src="{{ asset('vuexy/app-assets/js/core/app.js') }}"></script>
-<!-- END: Theme JS-->
 </head>
 <!-- END: Head-->
 
@@ -168,7 +135,7 @@
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-
+    
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Soudagar.id</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with 💕</span></p>
@@ -177,6 +144,41 @@
     <!-- END: Footer-->
 </body>
 <!-- END: Body-->
+
+<!-- BEGIN: Theme JS-->
+<script src="{{ asset('vuexy/app-assets/js/core/app-menu.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/js/core/app.js') }}"></script>
+<!-- END: Theme JS-->
+<!-- BEGIN: Vendor JS-->
+<script src="{{ asset('vuexy/app-assets/vendors/js/vendors.min.js') }}"></script>
+<!-- BEGIN Vendor JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{{ asset('vuexy/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/jszip.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.print.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="{{ asset('vuexy/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+<!-- END: Page JS-->
+
+<!-- BEGIN: Theme JS-->
+<script src="{{ asset('vuexy/app-assets/js/core/app-menu.js') }}"></script>
+<script src="{{ asset('vuexy/app-assets/js/core/app.js') }}"></script>
+<!-- END: Theme JS-->
 <script>
     $(window).on('load', function() {
         if (feather) {
@@ -187,10 +189,5 @@
         }
     })
 </script>
-
-<!-- BEGIN: Theme JS-->
-<script src="{{ asset('vuexy/app-assets/js/core/app-menu.js') }}"></script>
-<script src="{{ asset('vuexy/app-assets/js/core/app.js') }}"></script>
-<!-- END: Theme JS-->
-
+@yield('script')
 </html>

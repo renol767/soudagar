@@ -157,7 +157,8 @@
         </div>
     </div>
 </section>
-
+@endSection()
+@section('script')
 
 <!-- Edit / Reset Password Modal -->
 <script>

@@ -145,7 +145,8 @@
         </div>
     </div>
 </div>
-
+@endSection()
+@section('script')
 <script>
     document.getElementById('preview').style.display = 'none';
 
