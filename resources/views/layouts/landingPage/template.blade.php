@@ -80,12 +80,9 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Blog</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="blog-standard.html">Blog Standard</a></li>
-                                    <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                    <li><a href="blog-2-colum.html">Blog Grid Two Colum</a></li>
-                                    <li><a href="blog-3-colum.html">Blog Grid Three Colum</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                    <li><a href="blog-single-with-sidebar.html">Blog Single With Sidebar</a></li>
+                                    @foreach ($blog as $b)
+                                    <li><a href="blog-standard.html">{{$b->judul}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li><a href="contact.html">contact</a></li>

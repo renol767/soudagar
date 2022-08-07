@@ -200,63 +200,20 @@
             <!-- Collapse start -->
             <section id="collapsible">
                 <div class="col-sm-12 position-center">
+                    @foreach ($faq as $key=>$f)
                     <p class="mb-2 demo-inline-spacing">
-                        <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Bisa Punya Penghasilan Tambahan Tanpa Perlu Modal
+                        <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ $f->id }}" aria-expanded="false" aria-controls="collapseExample{{ $f->id }}">
+                            {{ $f->slug }}
                         </a>
                     </p>
-                    <div class="collapse show" id="collapseExample">
+                    <div class="collapse @if($key == 0) show @endif " id="collapseExample{{ $f->id }}">
                         <div class="d-flex p-1 mb-2">
                             <span>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                                software like Aldus PageMaker including versions of Lorem Ipsum.It is a long established fact that a
-                                reader will be distracted by the readable content of a page when looking at its layout. The point of
-                                using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+                                {{ $f->deskripsi }}
                             </span>
                         </div>
                     </div>
-                    <p class="mb-2 demo-inline-spacing">
-                        <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Gandakan uang tanpa pergi ke dukun
-                        </a>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="d-flex p-1 mb-2">
-                            <span>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                                software like Aldus PageMaker including versions of Lorem Ipsum.It is a long established fact that a
-                                reader will be distracted by the readable content of a page when looking at its layout. The point of
-                                using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
-                            </span>
-                        </div>
-                    </div>
-                    <p class="mb-2 demo-inline-spacing">
-                        <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                            Solusi cepat dan tepat untuk anda
-                        </a>
-                    </p>
-                    <div class="collapse" id="collapseExample2">
-                        <div class="d-flex p-1 mb-2">
-                            <span>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                                software like Aldus PageMaker including versions of Lorem Ipsum.It is a long established fact that a
-                                reader will be distracted by the readable content of a page when looking at its layout. The point of
-                                using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
-                            </span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </section>
             <!-- Collapse end -->
@@ -287,42 +244,19 @@
     </div>
     <div class="container">
         <div class="row">
-
-            <!-- Single item -->
-            <div class="single-item col-lg-4 col-md-6">
+            <?php
+            $namaBulan = [
+                'Januari', 'Februari', 'Maret', 'April',
+                'Mei', 'Juni', 'Juli', 'Agustus', 'September',
+                'Oktober', 'November', 'Desember'
+            ];
+            ?>
+            @foreach ($blog as $kontenBlog)
+            <div class="single-item col-lg-4 col-md-2">
                 <div class="item">
                     <div class="thumb">
-                        <a href="#"><img src="{{ asset('appkulanding/assets/img/800x600.png') }}" alt="Thumb"></a>
-                        <div class="date"><strong>18</strong> <span>Apr</span></div>
-                    </div>
-                    <div class="info">
-                        <div class="meta">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fas fa-user-circle"></i> User</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fas fa-comments"></i> 26 Comments</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <h4>
-                            <a href="#">Discovery earnestly public commanded mentions.</a>
-                        </h4>
-                        <p>
-                            Possession ye no mr unaffected remarkably at. Wrote house in never fruit up. Pasture imagine my garrets.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single item -->
-
-            <!-- Single item -->
-            <div class="single-item col-lg-4 col-md-6">
-                <div class="item">
-                    <div class="thumb">
-                        <a href="#"><img src="{{ asset('appkulanding/assets/img/800x600.png') }}" alt="Thumb"></a>
-                        <div class="date"><strong>25</strong> <span>Aug</span></div>
+                        <a href="{{ route('detailBlog',$kontenBlog->slug) }}"><img src="{{ asset('images/blog/'.$kontenBlog->image) }}" alt="Thumb"></a>
+                        <div class="date"><strong>{{ $kontenBlog->tanggal }}</strong> <span>{{ $namaBulan[$kontenBlog->bulan] }}</span></div>
                     </div>
                     <div class="info">
                         <div class="meta">
@@ -330,50 +264,18 @@
                                 <li>
                                     <a href="#"><i class="fas fa-user-circle"></i> Admin</a>
                                 </li>
-                                <li>
-                                    <a href="#"><i class="fas fa-comments"></i> 35 Comments</a>
-                                </li>
                             </ul>
                         </div>
                         <h4>
-                            <a href="#">Considered imprudence of he friendship boisterous.</a>
+                            <a href="#">{{ $kontenBlog->judul }}</a>
                         </h4>
-                        <p>
-                            Possession ye no mr unaffected remarkably at. Wrote house in never fruit up. Pasture imagine my garrets.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single item -->
-
-            <!-- Single item -->
-            <div class="single-item col-lg-4 col-md-6">
-                <div class="item">
-                    <div class="thumb">
-                        <a href="#"><img src="{{ asset('appkulanding/assets/img/800x600.png') }}" alt="Thumb"></a>
-                        <div class="date"><strong>05</strong> <span>Jul</span></div>
-                    </div>
-                    <div class="info">
-                        <div class="meta">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fas fa-user-circle"></i> user</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fas fa-comments"></i> 12 Comments</a>
-                                </li>
-                            </ul>
+                        <div class="overflow-hidden" style="min-height: 100px; max-height: 100px;">
+                            <?= $kontenBlog->konten; ?>
                         </div>
-                        <h4>
-                            <a href="#">Overcame breeding or my concerns removing desirous.</a>
-                        </h4>
-                        <p>
-                            Possession ye no mr unaffected remarkably at. Wrote house in never fruit up. Pasture imagine my garrets.
-                        </p>
                     </div>
                 </div>
             </div>
-            <!-- End Single item -->
+            @endforeach
 
         </div>
     </div>

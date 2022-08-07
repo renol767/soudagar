@@ -1,4 +1,4 @@
-@extends ('layouts.website.template')
+@extends('layouts.reseller.template')
 
 @section('content')
 @if (session('failed'))
@@ -17,108 +17,95 @@
     </div>
 </div>
 @endif
-
-<style>
-    .table-cell {position: relative; overflow: hidden; display: table-cell;}
-</style>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <h4 class="alert-heading">ERROR</h4>
+    <div class="alert-body">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endif
+<!-- Data Brand Starts -->
 <section id="basic-datatable">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatablecustom" class="table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>No</th>
-                                <th>Judul</th>
-                                <th>Status</th>
-                                <th>Thumbnail</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($blogs as $key => $blog)
-                            <tr>
-                                <td></td>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $blog->judul }}</td>
-                                <td>@if($blog->status == 'publish')
-                                    <span class="badge bg-info">{{ $blog->status }}</span></td>
-                                    @endif
-                                    @if($blog->status == 'draft')
-                                    <span class="badge bg-secondary">{{ $blog->status }}</span></td>
-                                    @endif
-                                <td><img src="{{asset('images/blog/' . $blog->image)}}" class="me-75" height="100" /></td>
-                                <td>
-                                    <a class="nav-link dropdown-toggle dropdown-user-link btn btn-outline-primary" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="" class="me-25"></i>
-                                        <span>Aksi</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                                        @if($blog->status == 'publish')
-                                            <a class="dropdown-item" href="{{ route('draft_blog',$blog->id) }}"><i class="me-50" data-feather='archive'></i></i>Draft</a>
+                    <div class="table-responsive">
+                        <table id="datatablecustom" class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>No</th>
+                                    <th>Brand</th>
+                                    <th>Produk</th>
+                                    <th>Kuantitas</th>
+                                    <th>Jumlah Harga</th>
+                                    <th>Jumlah Keuntungan</th>
+                                    <th>Status</th>
+                                    <th>Tanggal Pengambilan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($pengajuan as $key => $data)
+                                <tr>
+                                    <th></th>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $data->nama_brand }}</td>
+                                    <td>{{ $data->nama_produk }}</td>
+                                    <td>{{ $data->kuantitas }}</td>
+                                    <td>Rp.{{ $data->kuantitas * $data->harga_reseller }}</td>
+                                    <td>{{ $data->harga_jual - $data->harga_reseller }}</td>
+                                    <td>
+                                        @if($data->status == 'sudah bayar')
+                                        <span class="badge bg-success">Sudah Bayar</span>
                                         @endif
-                                        @if($blog->status == 'draft')
-                                        <a class="dropdown-item" href="{{ route('publish_blog',$blog->id) }}"><i class="me-50" data-feather='monitor'></i></i>Publish</a>
+                                        @if($data->status == 'belum bayar')
+                                        <span class="badge bg-secondary">Belum Bayar</span>
                                         @endif
-                                        <a class="dropdown-item" href="{{ route('edit_blog',$blog->id)}}"><i class="me-50" data-feather="edit"></i>Edit</a>
-                                        <a class="dropdown-item" onclick="confirm_delete(this)" href="#" data-bs-toggle="modal" data-bs-target="#confirmDelete" data-id="{{$blog->id}}"><i class="me-50" data-feather="trash"></i>Hapus</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td>{{ $data->tanggal_pengambilan }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Confirm Delete Users -->
-    <div class="modal modal-slide-in fade" id="confirmDelete" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog sidebar-sm">
-            <form class="add-new-record modal-content pt-0" action="{{route('delete_blog')}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" id="deletebrandid" name="id">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-                <div class="modal-header mb-1">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Blog</h5>
-                </div>
-                <div class="modal-body flex-grow-1">
-                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin menghapus blog?</h5><br>
-                    <button type="submit" class="btn btn-primary data-submit me-1">Confirm</button>
-                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
 </section>
 @endSection()
 @section('script')
+
 <!-- Edit / Reset Password Modal -->
 <script>
     function edit_data(e) {
         var data = $(e);
         $('#editid').val(data.data('id'))
-        $('#editjudul').val(data.data('nama'));
-        img = data.data('img');
-        oldImage = "/images/brand/" + img + ""
-        var base_url = window.location.origin;
-        oldImage = base_url + oldImage;
-        $('#oldimage').attr('src', oldImage);
-        $('#editkonten').val(data.data('deskripsi'));
+        $('#user').val(data.data('name'));
+        $('#brand').val(data.data('nama_brand'));
+        $('#produk').val(data.data('nama_produk'));
+        $('#kuantitas').val(data.data('kuantitas'));
+        $('#jumlah').val(data.data('jumlah'));
+        $('#status').val(data.data('status'));
+        $('#tanggal_pengambilan').val(data.data('tanggal_pengambilan'));
     }
 
     function confirm_delete(e) {
         var data = $(e);
-        $('#deletebrandid').val(data.data('id'));
+        $('#deletepesanan').val(data.data('id'));
     }
 </script>
 
 <!-- DataTabel -->
 <script>
     $('#datatablecustom').DataTable({
-
+        autoFill: true,
         columnDefs: [{
                 // For Responsive
                 className: 'control',
@@ -130,9 +117,11 @@
                 responsivePriority: 1,
                 targets: 2
             },
-        ],
-        order: [
-            [1, 'asc']
+            {
+                targets: -1,
+                title: 'Tanggal Pengambilan',
+                orderable: false,
+            }
         ],
         dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
         displayLength: 7,
@@ -210,10 +199,11 @@
             {
                 text: feather.icons['plus'].toSvg({
                     class: 'me-50 font-small-4'
-                }) + 'Create New Blog',
+                }) + 'Tambah pesanan baru',
                 className: 'create-new btn btn-primary',
-                action: function(e, dt, button, config) {
-                    window.location = "{{ route('create_blog') }}"
+                attr: {
+                    'data-bs-toggle': 'modal',
+                    'data-bs-target': '#modals-slide-in-create'
                 },
                 init: function(api, node, config) {
                     $(node).removeClass('btn-secondary');
@@ -225,7 +215,7 @@
                 display: $.fn.dataTable.Responsive.display.modal({
                     header: function(row) {
                         var data = row.data();
-                        return 'Details of ' + data['judul'];
+                        return 'Details of ' + data['nama_brand'];
                     }
                 }),
                 type: 'column',

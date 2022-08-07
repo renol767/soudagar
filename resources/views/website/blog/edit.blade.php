@@ -19,14 +19,15 @@
 @endif
 <div class="card">
     <div class="card-body">
-        <form method="POST" class="form-group" enctype="multipart/form-data" id="create" action="{{ route('insert_blog') }}">
+        <form method="POST" class="form-group" enctype="multipart/form-data" id="create" action="{{ route('update_blog') }}">
             @csrf
+            <input type="hidden" value="{{ $blog->id }}" name="id">
             <label for="judul">Judul Konten</label>
-            <input type="text" name="judul" class="form-control" placeholder="Judul konten..">
+            <input type="text" name="judul" class="form-control" placeholder="Judul konten.." value="{{ $blog->judul }}">
             <label for="thumbnail">Image thumnail konten</label>
             <input type="file" name="thumbnail" class="form-control">
             <label for="konten">Isi Konten</label>
-            <div id="toolbar"></div>
+            <div id="toolbar"><?= $blog->konten; ?></div>
             <div id="editor"></div>
             
             <a href="{{ route('blog') }}" class="btn btn-warning mt-2" type="submit">KEMBALI</a>

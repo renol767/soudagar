@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use App\Models\LandingPageModel;
 use App\Models\BrandModel;
 use App\Models\ProdukModel;
 use App\Http\Requests\ImageUploadRequest;
-use DB;
+use App\Models\FaqModel;
+use App\Models\User;
 
 class WebsiteAdminController extends Controller
 {
@@ -85,12 +87,34 @@ class WebsiteAdminController extends Controller
         }
 
         if (LandingPageModel::where(['id' => $request->id])
-            ->update(array_merge($data, $imgUploadToDb))) 
-        {
+            ->update(array_merge($data, $imgUploadToDb))
+        ) {
             return redirect()->back()->with('success', 'DATA BERHASIL DIUPDATE!');
         } else {
             return redirect()->back()->with('failed', 'DATA GAGAL DIUPDATE!');
         }
+    }
+
+    public function faq()
+    {
+        $faq = FaqModel::all();
+        $data = [
+            'title' => 'Data FAQ',
+            'faq' => $faq
+        ];
+
+        return view('website/menu/faq', $data);
+    }
+
+    public function profil($id = null)
+    {
+        $user = User::find($id);
+        
+        $data = [
+            'title' => 'Profil',
+            'user' => $user
+        ];
+        return view('profil/website', $data);
     }
 
     public function masteruser()
@@ -98,7 +122,7 @@ class WebsiteAdminController extends Controller
         $users = DB::table('users')->get();
         $data = [
             'users' => $users,
-            'title' => 'Data User'    
+            'title' => 'Data User'
         ];
         return view('website/menu/masteruser', $data);
     }
@@ -241,9 +265,10 @@ class WebsiteAdminController extends Controller
     {
         $list_brand = DB::Table('brand')->get();
         $data = [
-            'datas' => DB::select('SELECT produk.id, produk.nama_produk, produk.foto_produk, produk.deskripsi_produk, produk.stok_produk, produk.harga_reseller, produk.harga_jual, produk.id_brand, brand.nama_brand FROM produk JOIN brand ON produk.id_brand=brand.id'), 
+            'datas' => DB::select('SELECT produk.id, produk.nama_produk, produk.foto_produk, produk.deskripsi_produk, produk.stok_produk, produk.harga_reseller, produk.harga_jual, produk.id_brand, brand.nama_brand FROM produk JOIN brand ON produk.id_brand=brand.id'),
             'brands' => $list_brand,
-            'title' => 'Data Produk'];
+            'title' => 'Data Produk'
+        ];
         return view('website/menu/masterproduk', $data);
     }
 

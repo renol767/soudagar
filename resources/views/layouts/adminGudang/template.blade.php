@@ -76,11 +76,9 @@
                         <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">{{Auth::guard('web')->user()->name}}</span><span class="user-status">{{Auth::guard('web')->user()->role}}</span></div><span class="avatar"><img class="round" src="{{ asset('images/profil/'.Auth::guard('web')->user()->image) }}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                        <a class="dropdown-item" href="{{ route('profilwebsite',Auth::guard('web')->user()->id) }}"><i class="me-50" data-feather="user"></i> Profile</a>
-                        <div class="dropdown-divider">
-                        </div>
-                        <a class="dropdown-item" href="page-account-settings-account.html"><i class="me-50" data-feather="settings"></i> Settings</a>
-                        <a class="dropdown-item" href="page-faq.html"><i class="me-50" data-feather="help-circle"></i> FAQ</a><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('profilgudang',Auth::guard('web')->user()->id) }}"><i class="me-50" data-feather="user"></i> Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="page-account-settings-account.html"><i class="me-50" data-feather="settings"></i> Settings</a><a class="dropdown-item" href="page-faq.html"><i class="me-50" data-feather="help-circle"></i> FAQ</a><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="me-50" data-feather="power"></i> {{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -106,17 +104,11 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('editkontenwebsite')}}"><i data-feather='edit-3'></i><span class="menu-title text-truncate" data-i18n="Form Layout">Edit Konten Web</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('gudang_pesanan')}}"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="Form Layout">Pesanan</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masteruser')}}"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="Form Wizard">Master User</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('gudang_produk')}}"><i data-feather='package'></i><span class="menu-title text-truncate" data-i18n="Form Wizard">Ketersediaan Produk</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masterbrand')}}"><i data-feather='archive'></i><span class="menu-title text-truncate" data-i18n="Form Validation">Master Brand</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('masterproduk')}}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="Form Validation">Master Produk</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('blog')}}"><i data-feather='align-left'></i><span class="menu-title text-truncate" data-i18n="Form Layout">Blog</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('faq')}}"><i data-feather='help-circle'></i><span class="menu-title text-truncate" data-i18n="Form Layout">Data Faq</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('gudang_reseller')}}"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="Form Validation">Reseller</span></a>
                 </li>
             </ul>
         </div>

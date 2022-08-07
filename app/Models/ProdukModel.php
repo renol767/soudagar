@@ -9,9 +9,9 @@ class ProdukModel extends Model
 {
     use HasFactory;
 
-    protected $table        = 'brand';
+    protected $table        = 'produk';
     public $timestamps      = false;
-    protected $allowedFields = [
+    protected $fillable     = [
         'nama_produk','foto_produk', 'deskripsi_produk',
         'stok_produk', 'harga_reseller', 'harga_jual',
         'id_brand'

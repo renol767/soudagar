@@ -11,7 +11,7 @@ class BrandModel extends Model
 
     protected $table = 'brand';
     public $timestamps = false;
-    protected $allowedFields = [
+    protected $fillable = [
         'nama_brand','logo_brand', 'deskripsi_brand'
     ];
 

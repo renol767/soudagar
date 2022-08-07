@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogModel extends Model
+class FaqModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'blog';
+    protected $table = 'faq';
+    public $timestamps      = false;
 
     protected $fillable = [
-        'judul', 'slug', 'konten', 'status'
+        'slug', 'deskripsi'
     ];
 }
