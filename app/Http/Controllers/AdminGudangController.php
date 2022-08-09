@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\BrandModel;
 use App\Models\ProdukModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class AdminGudangController extends Controller
 {
@@ -49,6 +50,103 @@ class AdminGudangController extends Controller
         ];
 
         return view('gudang/pesanan', $data);
+    }
+
+    public function produk(){
+        $produk = ProdukModel::all();
+        $brand = BrandModel::all();
+        $data = [
+            'title' => 'Produk',
+            'produk' => $produk,
+            'brand' => $brand
+        ];
+        return view('gudang/produk', $data); 
+    }
+
+    public function insertProduk(Request $request)
+    {
+        if ($request->hasFile('foto_produk')) {
+            $imageName = time() . '.' . $request->file('foto_produk')->extension();
+            $request->file('foto_produk')->move('images/produk', $imageName);
+        } else {
+            return redirect('/website/masterbrand');
+        }
+        $data = array(
+            'id_brand' => $request->input('id_brand'),
+            'nama_produk' => $request->input('nama_produk'),
+            'foto_produk' => $imageName,
+            'deskripsi_produk' => $request->input('deskripsi_produk'),
+            'stok_produk' => $request->input('stok_produk'),
+            'harga_reseller' => $request->input('harga_reseller'),
+            'harga_jual' => $request->input('harga_jual'),
+        );
+        if(DB::Table('produk')->insert($data)){
+            return redirect()->back()->with('success', 'BERHASIL MENAMBAHKAN DATA PRODUK');
+        }
+        return redirect()->back()->with('failed', 'GAGAL MENAMBAHKAN DATA PRODUK');
+    }
+
+    public function updateProduk(Request $request){
+        if ($request->hasFile('newfoto_produk')) {
+            $check = DB::Table('produk')->where('id', '=', $request->input('editid'))->count();
+            if ($check > 0) {
+                $imgName = DB::Table('produk')->select('foto_produk')->where('id', $request->input('editid'))->get();
+                $imgName = 'images/produk/' . $imgName[0]->foto_produk;
+                File::delete($imgName);
+                $imageName = time() . '.' . $request->file('newfoto_produk')->extension();
+                $request->file('newfoto_produk')->move('images/produk', $imageName);
+                $updatedata = array(
+                    'id_brand' => $request->input('editid_brand'),
+                    'nama_produk' => $request->input('editnama_produk'),
+                    'foto_produk' => $imageName,
+                    'deskripsi_produk' => $request->input('editdeskripsi_produk'),
+                    'stok_produk' => $request->input('editstok_produk'),
+                    'harga_reseller' => $request->input('editharga_reseller'),
+                    'harga_jual' => $request->input('editharga_jual'),
+                );
+                if(DB::Table('produk')->where('id', '=', $request->input('editid'))->update($updatedata)){
+                    return redirect()->back()->with('success', 'BERHASIL MENGUPDATE DATA PRODUK');
+                }
+                return redirect()->back()->with('failed', 'GAGAL MENGUPDATE DATA PRODUK');
+            } else {
+                return redirect()->back()->with('failed', 'GAGAL MENGUPDATE DATA PRODUK');
+            }
+        } else {
+            $check = DB::Table('produk')->where('id', '=', $request->input('editid'))->count();
+            $updatedata = array(
+                'id_brand' => $request->input('editid_brand'),
+                'nama_produk' => $request->input('editnama_produk'),
+                'deskripsi_produk' => $request->input('editdeskripsi_produk'),
+                'stok_produk' => $request->input('editstok_produk'),
+                'harga_reseller' => $request->input('editharga_reseller'),
+                'harga_jual' => $request->input('editharga_jual'),
+            );
+            if ($check > 0) {
+                if(DB::Table('produk')->where('id', '=', $request->input('editid'))->update($updatedata)){
+                    return redirect()->back()->with('success', 'BERHASIL MENGUPDATE DATA PRODUK');
+                }
+                return redirect()->back()->with('failed', 'GAGAL MENGUPDATE DATA PRODUK');
+            } else {
+                return redirect()->back()->with('failed', 'GAGAL MENGUPDATE DATA PRODUK');
+            }
+        }
+    }
+
+    public function deleteProduk(Request $request){
+        $check = DB::Table('produk')->where('id', '=', $request->input('deleteprodukid'))->count();
+        if ($check > 0) {
+            $imgName = DB::Table('produk')->select('foto_produk')->where('id', $request->input('deleteprodukid'))->get();
+            $imgName = 'images/produk/' . $imgName[0]->foto_produk;
+            if(!File::delete($imgName)){
+                return redirect()->back()->with('failed', 'GAGAL MENGHAPUS DATA PRODUK');
+            }
+            if(DB::Table('produk')->where('id', '=', $request->input('deleteprodukid'))->delete()){
+                return redirect()->back()->with('success', 'BERHASIL MENGHAPUS DATA PRODUK');
+            }
+            return redirect()->back()->with('failed', 'GAGAL MENGHAPUS DATA PRODUK');
+        } else {
+            return redirect()->back()->with('failed', 'GAGAL MENGHAPUS DATA PRODUK');
+        }
     }
 
     public function reseller()

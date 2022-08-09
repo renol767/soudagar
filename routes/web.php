@@ -48,6 +48,9 @@ Route::post('updateprofil', [App\Http\Controllers\UserController::class, 'update
 Route::get('gudang', [App\Http\Controllers\AdminGudangController::class, 'index'])->middleware(['auth','checkRole:gudang'])->name('gudang');
 Route::get('gudang/pesanan', [App\Http\Controllers\AdminGudangController::class, 'pesanan'])->middleware(['auth','checkRole:gudang'])->name('gudang_pesanan');
 Route::get('gudang/produk', [App\Http\Controllers\AdminGudangController::class, 'produk'])->middleware(['auth','checkRole:gudang'])->name('gudang_produk');
+Route::delete('gudang/deleteproduk', [App\Http\Controllers\AdminGudangController::class, 'deleteProduk'])->middleware(['auth','checkRole:gudang'])->name('deletegudangproduk');
+Route::post('gudang/insertproduk', [App\Http\Controllers\AdminGudangController::class, 'insertProduk'])->middleware(['auth','checkRole:gudang'])->name('insertgudangproduk');
+Route::put('gudang/updateproduk', [App\Http\Controllers\AdminGudangController::class, 'updateProduk'])->middleware(['auth','checkRole:gudang'])->name('updategudangproduk');
 Route::get('gudang/reseller', [App\Http\Controllers\AdminGudangController::class, 'reseller'])->middleware(['auth','checkRole:gudang'])->name('gudang_reseller');
 Route::delete('gudang/deletereseller', [App\Http\Controllers\AdminGudangController::class, 'deleteReseller'])->middleware(['auth','checkRole:gudang'])->name('deletereseller');
 Route::post('gudang/insertreseller', [App\Http\Controllers\AdminGudangController::class, 'insertReseller'])->middleware(['auth','checkRole:gudang'])->name('insertreseller');
