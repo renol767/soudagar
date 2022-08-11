@@ -14,13 +14,13 @@ class UserController extends Controller
             'id' => 'required',
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'no_telp' => 'required'
+            'phone' => 'required'
         ]);
 
         $data = [
             'name' => $request->nama,
             'email' => $request->email,
-            'no_telp' => $request->no_telp
+            'phone' => $request->phone
         ];
 
         if($request->password){
