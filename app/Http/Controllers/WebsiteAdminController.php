@@ -264,9 +264,11 @@ class WebsiteAdminController extends Controller
     public function masterproduk()
     {
         $list_brand = DB::Table('brand')->get();
+        $list_kategori = DB::Table('kategori')->get();
         $data = [
-            'datas' => DB::select('SELECT produk.id, produk.nama_produk, produk.foto_produk, produk.deskripsi_produk, produk.stok_produk, produk.harga_reseller, produk.harga_jual, produk.id_brand, brand.nama_brand FROM produk JOIN brand ON produk.id_brand=brand.id'),
+            'datas' => DB::select('SELECT produk.id, produk.nama_produk, produk.foto_produk, produk.deskripsi_produk, produk.stok_produk, produk.harga_reseller, produk.harga_jual, produk.id_brand, brand.nama_brand, kategori.nama_kategori FROM produk JOIN brand ON produk.id_brand=brand.id JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.id'),
             'brands' => $list_brand,
+            'kategories' => $list_kategori,
             'title' => 'Data Produk'
         ];
         return view('website/menu/masterproduk', $data);
@@ -282,6 +284,7 @@ class WebsiteAdminController extends Controller
         }
         $data = array(
             'id_brand' => $request->input('id_brand'),
+            'id_kategori' => $request->input('id_kategori'),
             'nama_produk' => $request->input('nama_produk'),
             'foto_produk' => $imageName,
             'deskripsi_produk' => $request->input('deskripsi_produk'),
@@ -305,6 +308,7 @@ class WebsiteAdminController extends Controller
                 $request->file('newfoto_produk')->move('images/produk', $imageName);
                 $updatedata = array(
                     'id_brand' => $request->input('editid_brand'),
+                    'id_kategori' => $request->input('editid_kategori'),
                     'nama_produk' => $request->input('editnama_produk'),
                     'foto_produk' => $imageName,
                     'deskripsi_produk' => $request->input('editdeskripsi_produk'),
@@ -321,6 +325,7 @@ class WebsiteAdminController extends Controller
             $check = DB::Table('produk')->where('id', '=', $request->input('editid'))->count();
             $updatedata = array(
                 'id_brand' => $request->input('editid_brand'),
+                'id_kategori' => $request->input('editid_kategori'),
                 'nama_produk' => $request->input('editnama_produk'),
                 'deskripsi_produk' => $request->input('editdeskripsi_produk'),
                 'stok_produk' => $request->input('editstok_produk'),
@@ -347,6 +352,50 @@ class WebsiteAdminController extends Controller
             return redirect('/website/masterproduk');
         } else {
             return redirect('/website/masterproduk');
+        }
+    }
+
+    public function masterkategori()
+    {
+        $list_brand = DB::Table('kategori')->get();
+        $data = [
+            'datas' => DB::select('SELECT * FROM kategori'),
+            'title' => 'Data Kategori'
+        ];
+        return view('website/menu/masterkategori', $data);
+    }
+
+    public function insertkategori(Request $request)
+    {
+        $data = array(
+            'nama_kategori' => $request->input('nama_kategori'),
+        );
+        DB::Table('kategori')->insert($data);
+        return redirect('/website/masterkategori');
+    }
+
+    public function editkategori(Request $request)
+    {
+        $check = DB::Table('kategori')->where('id', '=', $request->input('editid'))->count();
+        $updatedata = array(
+            'nama_kategori' => $request->input('editnama_kategori'),
+        );
+        if ($check > 0) {
+            DB::Table('kategori')->where('id', '=', $request->input('editid'))->update($updatedata);
+            return redirect('/website/masterkategori');
+        } else {
+            return redirect('/website/masterkategori');
+        }
+    }
+
+    public function deletekategori(Request $request)
+    {
+        $check = DB::Table('kategori')->where('id', '=', $request->input('deleteid'))->count();
+        if ($check > 0) {
+            DB::Table('kategori')->where('id', '=', $request->input('deleteid'))->delete();
+            return redirect('/website/masterkategori');
+        } else {
+            return redirect('/website/masterkategori');
         }
     }
 }

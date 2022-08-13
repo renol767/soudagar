@@ -39,6 +39,11 @@ Route::delete('website/deletefaq', [App\Http\Controllers\FaqController::class, '
 Route::put('website/updatefaq', [App\Http\Controllers\FaqController::class, 'update'])->middleware(['auth','checkRole:website'])->name('updatefaq');
 Route::post('website/insertfaq', [App\Http\Controllers\FaqController::class, 'insert'])->middleware(['auth','checkRole:website'])->name('insertfaq');
 Route::get('website/profil/{id}', [App\Http\Controllers\WebsiteAdminController::class, 'profil'])->middleware(['auth','checkRole:website'])->name('profilwebsite');
+Route::get('website/masterkategori', [App\Http\Controllers\WebsiteAdminController::class, 'masterkategori'])->middleware(['auth','checkRole:website'])->name('masterkategori');
+Route::delete('website/deletekategori', [App\Http\Controllers\WebsiteAdminController::class, 'deletekategori'])->middleware(['auth','checkRole:website'])->name('deletekategori');
+Route::put('website/editkategori', [App\Http\Controllers\WebsiteAdminController::class, 'editkategori'])->middleware(['auth','checkRole:website'])->name('editkategori');
+Route::post('website/insertkategori', [App\Http\Controllers\WebsiteAdminController::class, 'insertkategori'])->middleware(['auth','checkRole:website'])->name('insertkategori');
+
 
 //Profil
 Route::post('updateprofil', [App\Http\Controllers\UserController::class, 'update'])->middleware(['auth'])->name('updateprofil');
