@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2022 at 08:43 AM
+-- Generation Time: Aug 13, 2022 at 10:17 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -45,7 +45,7 @@ CREATE TABLE `blog` (
 
 INSERT INTO `blog` (`id`, `judul`, `slug`, `konten`, `image`, `status`, `tanggal`, `created_at`, `updated_at`) VALUES
 (2, 'Cara gandakan uang ala gus samsudin', 'Cara_gandakan_uang_ala_gus_samsudin', '\"<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi tempore mollitia est pariatur laboriosam! Vitae deleniti reiciendis delectus suscipit sunt atque, tempora, molestiae, libero expedita beatae voluptate odio numquam?</p>\"', '1659545239.png', 'publish', '2022-08-03', NULL, '2022-08-03 09:47:19'),
-(3, 'Apa saja', 'Apa_saja', '\"<p>jsadjnajdknkjwqnd</p><p>qwdjbqwjdbqw</p><p>dqwjdbqjwkdqwj\'bdcqw</p><p>cqfjwbdqwdqwjdbqw</p><p>dqw\'jbdqw</p><p>dqwjbd</p><p>qwjkdqwjkbdjkwqkdjbqwd</p><p>qwdjbqw</p><p>kjdqwdbqwd</p><p>qwdb</p><p>qwdq</p><p><br></p>\"', '1659545126.png', 'publish', '2022-08-03', NULL, '2022-08-03 09:46:29');
+(3, 'Apa saja', 'Apa_saja', '\"<iframe class=\\\"ql-video\\\" frameborder=\\\"0\\\" allowfullscreen=\\\"true\\\" src=\\\"https://www.youtube.com/embed/RpFaVEgE8qE?showinfo=0\\\"></iframe><p>\\\"</p><p>jsadjnajdknkjwqnd</p><p>qwdjbqwjdbqw</p><p>dqwjdbqjwkdqwj\'bdcqw</p><p>cqfjwbdqwdqwjdbqw</p><p>dqw\'jbdqw</p><p>dqwjbd</p><p>qwjkdqwjkbdjkwqkdjbqwd</p><p>qwdjbqw</p><p>kjdqwdbqwd</p><p>qwdb</p><p>qwdq</p><p><br></p><p><br></p><p>\\\"</p>\"', '1659545126.png', 'publish', '2022-08-03', NULL, '2022-08-11 00:24:06');
 
 -- --------------------------------------------------------
 
@@ -104,6 +104,26 @@ CREATE TABLE `faq` (
 INSERT INTO `faq` (`id`, `slug`, `deskripsi`) VALUES
 (2, 'Bisa Punya Penghasilan Tambahan Tanpa Perlu Modal', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea officiis eveniet harum in ratione magni labore doloribus, explicabo accusamus dignissimos totam neque possimus id facere voluptates quos minus repellat sequi?'),
 (3, 'Gandakan uang tanpe pergi ke dukun', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea officiis eveniet harum in ratione magni labore doloribus, explicabo accusamus dignissimos totam neque possimus id facere voluptates quos minus repellat sequi?');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id` bigint(20) NOT NULL,
+  `nama_kategori` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
+(1, 'Fashion'),
+(2, 'Kuliner'),
+(3, 'Skincare');
 
 -- --------------------------------------------------------
 
@@ -219,16 +239,17 @@ CREATE TABLE `produk` (
   `stok_produk` varchar(255) NOT NULL,
   `harga_reseller` varchar(255) NOT NULL,
   `harga_jual` varchar(255) NOT NULL,
-  `id_brand` bigint(20) NOT NULL
+  `id_brand` bigint(20) NOT NULL,
+  `id_kategori` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`, `harga_reseller`, `harga_jual`, `id_brand`) VALUES
-(1, 'EC2', '1659209443.png', 'Amazon EC2 Service', '100', '1000000', '1200000', 4),
-(2, 'Azure Machine Learning', '1659213779.jpg', 'Azure Machine Learning', '200', '4000000', '4500000', 5);
+INSERT INTO `produk` (`id`, `nama_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`, `harga_reseller`, `harga_jual`, `id_brand`, `id_kategori`) VALUES
+(1, 'EC2', '1659209443.png', 'Amazon EC2 Service', '100', '1000000', '1200000', 4, 1),
+(2, 'Azure Machine Learning', '1659213779.jpg', 'Azure Machine Learning', '200', '4000000', '4500000', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -255,7 +276,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `role`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin Websiteyu', 'website@soudagar.id', '089898611682', NULL, '$2y$10$Esm9G5jnyLFZ4NAc89sbZuuVldYsxVybGPZ/1/PkVS4nRPSjsKGNS', 'website', '1659836904.png', '2tjBfc5Siuh0EpQGJSEQ6mi0l4nKvcjc5TXB30Y13xvdsCrL34KttkZr6eM5', '2022-07-25 19:39:32', '2022-08-06 18:48:25'),
+(1, 'Admin Websiteyu', 'website@soudagar.id', '089898611682', NULL, '$2y$10$Esm9G5jnyLFZ4NAc89sbZuuVldYsxVybGPZ/1/PkVS4nRPSjsKGNS', 'website', '1659836904.png', 'tSOFivbMCD2dsi08QuryKmIJqoeJotPskFO9IMSLG1jAaePD13GVok8cLrSU', '2022-07-25 19:39:32', '2022-08-06 18:48:25'),
 (2, 'Reseller', 'reseller@soudagar.id', '0897986t87', NULL, '$2y$10$AtHx0WvHl02KT2UUG4A/ouKsnJsLEKQgek0o7a1U30JaFfHtSitnG', 'reseller', '1659837593.png', NULL, '2022-07-25 20:12:27', '2022-08-06 18:59:53'),
 (3, 'Gudang', 'gudang@soudagar.id', '089898611682', NULL, '$2y$10$C4nWsqtukMmj4tE0t78JEOMd0iHudkWiymvqvM5abnbrH6McP3sxW', 'gudang', '1659837426.png', NULL, '2022-07-26 06:33:04', '2022-08-06 18:57:06'),
 (6, 'Steven Alex', 'steve@mail.com', '083124141124', NULL, '$2y$10$FcwXYi8.4pVsAFZbWxmltul4KMPtm6J4XrvESSlyYHSydCFzpLa/i', 'reseller', 'default.jpg', NULL, '2022-08-10 23:34:57', '2022-08-10 23:34:57');
@@ -290,6 +311,12 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kontenweb`
 --
 ALTER TABLE `kontenweb`
@@ -320,7 +347,8 @@ ALTER TABLE `pesanan`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_brand` (`id_brand`);
+  ADD KEY `id_brand` (`id_brand`),
+  ADD KEY `id_kategori` (`id_kategori`);
 
 --
 -- Indexes for table `users`
@@ -358,6 +386,12 @@ ALTER TABLE `faq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `kontenweb`
 --
 ALTER TABLE `kontenweb`
@@ -379,7 +413,7 @@ ALTER TABLE `pesanan`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -402,7 +436,8 @@ ALTER TABLE `pesanan`
 -- Constraints for table `produk`
 --
 ALTER TABLE `produk`
-  ADD CONSTRAINT `id_brand` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`);
+  ADD CONSTRAINT `id_brand` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`),
+  ADD CONSTRAINT `id_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
