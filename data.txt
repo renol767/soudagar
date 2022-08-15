@@ -23,6 +23,9 @@ https://www117.zippyshare.com/v/vHEmsGgK/file.html
 12.5% DEVA
 60% A RIAN
 
+img showcase 1
+dimentions 1079x622
+
 LANDING PAGE : DEVA
 LOGIN REGISTER : RENOL
 
@@ -39,6 +42,8 @@ LIST RESELLER : DEVA
 
 RESELLER : DEVA
 PENGAJUAN AMBIL PRODUK (HISTORY) : DEVA
+KATALOG
+PROMO
 
 DEPLOYMENT : RENOL
 
@@ -52,3 +57,12 @@ id, id_brand, id_produk, id_user, kuantitas, jumlah, status(apakah sudah dibayar
 
 WEBSITE
 text1, gambar1 kumaha dwk
+
+
+data PRODUK
+kuliner 
+fashion
+kriya
+skincare
+helthy life
+other

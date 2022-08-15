@@ -28,6 +28,7 @@
     <link href="{{ asset('appkulanding/assets/css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('appkulanding/style.css') }}" rel="stylesheet">
     <link href="{{ asset('appkulanding/assets/css/responsive.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -41,7 +42,7 @@
 
 <body>
 
-  <!-- Preloader Start -->
+    <!-- Preloader Start -->
     <div class="se-pre-con"></div>
     <!-- Preloader Ends -->
 
@@ -52,7 +53,7 @@
         <nav class="navbar mobile-sidenav attr-border navbar-sticky navbar-default validnavs navbar-fixed white no-background">
 
 
-            <div class="container d-flex justify-content-between align-items-center">            
+            <div class="container d-flex justify-content-between align-items-center">
 
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
@@ -75,10 +76,10 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-times"></i>
                         </button>
-                        
+
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Blog</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog</a>
                                 <ul class="dropdown-menu">
                                     @foreach ($blog as $b)
                                     <li><a href="blog-standard.html">{{$b->judul}}</a></li>
@@ -97,14 +98,14 @@
 
                 </div>
                 <!-- Main Nav -->
-            </div>   
+            </div>
         </nav>
         <!-- End Navigation -->
     </header>
     <!-- End Header -->
 
     @yield('content')
-    
+
 
     <!-- Start Footer 
     ============================================= -->
@@ -116,12 +117,25 @@
                         <div class="f-item about">
                             <img src="{{ asset('images/logo/soudagar-light.png') }}" alt="Logo">
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore voluptates repudiandae itaque odio deserunt molestiae cupiditate minima doloribus praesentium quae quia eveniet exercitationem tempora quas nisi qui cum, suscipit quod!
+                                {{$konten->alamat}}
                             </p>
-                            <form action="#">
-                                <input type="email" placeholder="Email" class="form-control" name="email">
-                                <button type="submit"> <i class="arrow_right"></i></button>  
-                            </form>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{$konten->facebook}}"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="{{ $konten->instagram }}"><i class="fa-brands fa-instagram fa-xl"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="{{ $konten->youtube }}"><i class="fa-brands fa-youtube fa-xl"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="{{ $konten->telegram }}"><i class="fa-brands fa-telegram fa-xl"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="{{ $konten->whatsapp }}"><i class="fa-brands fa-whatsapp fa-xl"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 item">
@@ -150,16 +164,7 @@
                                 <ul>
                                     <li>
                                         <div class="icon">
-                                            <i class="fas fa-home"></i>
-                                        </div>
-                                        <div class="content">
-                                            <strong>Address:</strong>
-                                            45473, Alabasta
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="fas fa-envelope"></i>
+                                            <i class="fa-solid fa-envelope-open-text"></i>
                                         </div>
                                         <div class="content">
                                             <strong>Email:</strong>
@@ -168,7 +173,7 @@
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <i class="fas fa-phone"></i>
+                                            <i class="fa-solid fa-phone"></i>
                                         </div>
                                         <div class="content">
                                             <strong>Phone:</strong>
@@ -229,4 +234,5 @@
     <script src="{{ asset('appkulanding/assets/js/main.js') }}"></script>
 
 </body>
+
 </html>

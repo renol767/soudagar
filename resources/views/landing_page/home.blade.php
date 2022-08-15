@@ -141,7 +141,9 @@
                         @for ($i=0; $i < count($benefit); $i++) <li>
                             <h5>{{ $benefit[$i] }}</h5>
                             <p>
-                                {{ $deskripsiBenefit[$i] }}
+                                @if($deskripsiBenefit[$i] != '')
+                                    {{ $deskripsiBenefit[$i] }}
+                                @endif
                             </p>
                             </li>
                             @endfor
