@@ -19,7 +19,8 @@ class LandingPageModel extends Model
         'tagline_produkdanbrand', 'tagline_benefit', 'deskripsi_benefit',
         'img_benefit', 'tagline_keunggulan', 'deskripsi_keunggulan',
         'img_keunggulan', 'poin_keunggulan', 'deskripsi_poin_keunggulan',
-        'poin_benefit', 'deskripsi_poin_benefit'    
+        'poin_benefit', 'deskripsi_poin_benefit', 'facebook', 'instagram',
+        'youtube', 'telegram', 'whatsapp', 'alamat'
     
     ];
 }

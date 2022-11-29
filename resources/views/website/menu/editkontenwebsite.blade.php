@@ -39,6 +39,9 @@
 
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" onclick="keunggulan()">
                 <label class="btn btn-outline-primary" for="btnradio6">Keunggulan</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" onclick="footer()">
+                <label class="btn btn-outline-primary" for="btnradio7">Footer</label>
             </div>
         </div>
     </section>
@@ -123,6 +126,20 @@
                         <small>* Pisahkan dengan tanda -</small><br>
                         <small>* Contoh murah-gratis-bervariasi</small>
                     </div>
+                    <div id="footer">
+                        <label for="instagran">Intagram</label>
+                        <input type="url" placeholder="https://sosialmedia.com/soudagar.id" name="instagram" value="{{ $data->instagram }}" class="form-control">
+                        <label for="facebook">Facebook</label>
+                        <input type="url" placeholder="https://sosialmedia.com/soudagar.id" name="facebook" value="{{ $data->facebook }}" class="form-control">
+                        <label for="telegram">Telegram</label>
+                        <input type="url" placeholder="https://sosialmedia.com/soudagar.id" name="telegram" value="{{ $data->telegram }}" class="form-control">
+                        <label for="youtube">YouTube</label>
+                        <input type="url" placeholder="https://sosialmedia.com/soudagar.id" name="youtube" value="{{ $data->youtube }}" class="form-control">
+                        <label for="youtube">WhatsApp</label>
+                        <input type="url" placeholder="https://sosialmedia.com/soudagar.id" name="whatsapp" value="{{ $data->whatsapp }}" class="form-control">
+                        <label for="alamat">Alamat</label>
+                        <textarea cols="4" name="alamat" class="form-control">{{ $data->alamat }}</textarea>
+                    </div>
                     @endforeach
                     <button class="btn btn-primary mt-4" type="submit">Simpan</button>
                     <button class="btn btn-info mt-4" type="button" onclick="preview()">Preview</button>
@@ -175,6 +192,7 @@
     document.getElementById('benefit').style.display = 'none'
     document.getElementById('produkdanbrand').style.display = 'none'
     document.getElementById('keunggulan').style.display = 'none'
+    document.getElementById('footer').style.display = 'none'
 
     function showcase1() {
         document.getElementById('benefit').style.display = 'none'
@@ -183,6 +201,7 @@
         document.getElementById('showcase2').style.display = 'none'
         document.getElementById('showcase3').style.display = 'none'
         document.getElementById('showcase1').style.display = ''
+        document.getElementById('footer').style.display = 'none'
     }
 
     function showcase2() {
@@ -192,6 +211,7 @@
         document.getElementById('showcase2').style.display = ''
         document.getElementById('showcase3').style.display = 'none'
         document.getElementById('showcase1').style.display = 'none'
+        document.getElementById('footer').style.display = 'none'
     }
 
     function showcase3() {
@@ -201,6 +221,7 @@
         document.getElementById('showcase2').style.display = 'none'
         document.getElementById('showcase3').style.display = ''
         document.getElementById('showcase1').style.display = 'none'
+        document.getElementById('footer').style.display = 'none'
     }
 
     function produkdanbrand() {
@@ -210,6 +231,7 @@
         document.getElementById('showcase2').style.display = 'none'
         document.getElementById('showcase3').style.display = 'none'
         document.getElementById('showcase1').style.display = 'none'
+        document.getElementById('footer').style.display = 'none'
     }
 
     function benefit() {
@@ -219,6 +241,7 @@
         document.getElementById('showcase2').style.display = 'none'
         document.getElementById('showcase3').style.display = 'none'
         document.getElementById('showcase1').style.display = 'none'
+        document.getElementById('footer').style.display = 'none'
     }
 
     function keunggulan() {
@@ -228,6 +251,17 @@
         document.getElementById('showcase2').style.display = 'none'
         document.getElementById('showcase3').style.display = 'none'
         document.getElementById('showcase1').style.display = 'none'
+        document.getElementById('footer').style.display = 'none'
+    }
+
+    function footer() {
+        document.getElementById('benefit').style.display = 'none'
+        document.getElementById('produkdanbrand').style.display = 'none'
+        document.getElementById('keunggulan').style.display = 'none'
+        document.getElementById('showcase2').style.display = 'none'
+        document.getElementById('showcase3').style.display = 'none'
+        document.getElementById('showcase1').style.display = 'none'
+        document.getElementById('footer').style.display = ''
     }
 </script>
 @endSection()

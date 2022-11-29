@@ -63,9 +63,15 @@ class WebsiteAdminController extends Controller
             'deskripsi_poin_benefit' => $request->deskripsiPoinBenefit,
             'tagline_keunggulan' => $request->judulKeunggulan,
             'deskripsi_keunggulan' => $request->deskripsiKeunggulan,
-            'poin_keunggulan' => $request->poinKeunggulan
+            'poin_keunggulan' => $request->poinKeunggulan,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'telegram' => $request->telegram,
+            'youtube' => $request->youtube,
+            'whatsapp' => $request->whatsapp,
+            'alamat' => $request->alamat
         );
-
+       
         $img = array(
             'img_showcase1',
             'img_fadeInLeft_Showcase2',
